@@ -1,97 +1,125 @@
-This is a new [**React Native**](https://reactnative.dev) project, bootstrapped using [`@react-native-community/cli`](https://github.com/react-native-community/cli).
+Weather App (React Native CLI)
+A React Native application built with React Native CLI that allows users to search for weather forecasts by city or location. The app fetches weather data using the OpenWeatherMap API and displays current weather conditions and a 5-day forecast.
+Features
 
-# Getting Started
+Search by City: Enter a city name to fetch and display current weather and forecast data.
+Location Suggestions: Autocomplete suggestions for locations as you type.
+Weather Forecast: Displays aggregated daily forecasts for the next 5 days.
+Loading and Error Handling: Shows a loading indicator during API calls and displays error messages when necessary.
+Responsive UI: Optimized for mobile devices using React Native.
 
-> **Note**: Make sure you have completed the [Set Up Your Environment](https://reactnative.dev/docs/set-up-your-environment) guide before proceeding.
+Prerequisites
+Before setting up the project, ensure you have the following installed:
 
-## Step 1: Start Metro
+Node.js (v16 or higher)
+npm (comes with Node.js) or yarn
+React Native CLI: Install globally with npm install -g react-native-cli
+Java Development Kit (JDK) (for Android development, version 11 or higher recommended)
+Android Studio (for Android emulator or device testing)
+Xcode (for iOS simulator or device testing, macOS only)
+OpenWeatherMap API Key (free tier available)
 
-First, you will need to run **Metro**, the JavaScript build tool for React Native.
+Setup Instructions
+Follow these steps to set up and run the project using React Native CLI:
 
-To start the Metro dev server, run the following command from the root of your React Native project:
+Clone the Repository:
+git clone <repository-url>
+cd weather-app
 
-```sh
-# Using npm
-npm start
 
-# OR using Yarn
-yarn start
-```
+Install Dependencies:Install project dependencies using npm:
+npm install
 
-## Step 2: Build and run your app
+Or using yarn:
+yarn install
 
-With Metro running, open a new terminal window/pane from the root of your React Native project, and use one of the following commands to build and run your Android or iOS app:
 
-### Android
+Set Up OpenWeatherMap API Key:
 
-```sh
-# Using npm
-npm run android
+Sign up at OpenWeatherMap to obtain a free API key.
+Open the services/weatherService.ts file.
+Replace the placeholder API key with your own:const apiKey = "your-api-key-here";
 
-# OR using Yarn
-yarn android
-```
 
-### iOS
+Save the file.
 
-For iOS, remember to install CocoaPods dependencies (this only needs to be run on first clone or after updating native deps).
 
-The first time you create a new project, run the Ruby bundler to install CocoaPods itself:
+Install Additional Dependencies:The app requires axios for API requests and lodash for debouncing. Install them if not already included:
+npm install axios lodash
 
-```sh
-bundle install
-```
+Or with yarn:
+yarn add axios lodash
 
-Then, and every time you update your native dependencies, run:
+Run the Application:
 
-```sh
-bundle exec pod install
-```
+Start the Metro bundler:npx react-native start
 
-For more information, please visit [CocoaPods Getting Started guide](https://guides.cocoapods.org/using/getting-started.html).
 
-```sh
-# Using npm
-npm run ios
+In a separate terminal, run the app:
+For Android:npx react-native run-android
 
-# OR using Yarn
-yarn ios
-```
 
-If everything is set up correctly, you should see your new app running in the Android Emulator, iOS Simulator, or your connected device.
+For iOS (macOS only):npx react-native run-ios
 
-This is one way to run your app — you can also build it directly from Android Studio or Xcode.
 
-## Step 3: Modify your app
 
-Now that you have successfully run the app, let's make changes!
+API Key Instructions
 
-Open `App.tsx` in your text editor of choice and make some changes. When you save, your app will automatically update and reflect these changes — this is powered by [Fast Refresh](https://reactnative.dev/docs/fast-refresh).
+Obtaining an API Key:
+Visit OpenWeatherMap and create an account.
+Navigate to the API section in your OpenWeatherMap dashboard.
+Generate a new API key (the free tier is sufficient for this app).
+Copy the API key provided.
 
-When you want to forcefully reload, for example to reset the state of your app, you can perform a full reload:
 
-- **Android**: Press the <kbd>R</kbd> key twice or select **"Reload"** from the **Dev Menu**, accessed via <kbd>Ctrl</kbd> + <kbd>M</kbd> (Windows/Linux) or <kbd>Cmd ⌘</kbd> + <kbd>M</kbd> (macOS).
-- **iOS**: Press <kbd>R</kbd> in iOS Simulator.
+Using the API Key:
+Open the services/weatherService.ts file.
+Replace the placeholder API key (your-api-key-here) with your own:const apiKey = "your-api-key-here";
 
-## Congratulations! :tada:
 
-You've successfully run and modified your React Native App. :partying_face:
+Save the file. The app will use this key to make requests to the OpenWeatherMap API.
 
-### Now what?
 
-- If you want to add this new React Native code to an existing application, check out the [Integration guide](https://reactnative.dev/docs/integration-with-existing-apps).
-- If you're curious to learn more about React Native, check out the [docs](https://reactnative.dev/docs/getting-started).
+Important Notes:
+Keep your API key confidential and avoid sharing it publicly (e.g., in version control).
+The free tier of OpenWeatherMap has limits (e.g., 60 calls/minute, 1,000 calls/day). Monitor usage to avoid exceeding these limits.
+If you encounter a 401 error, verify your API key is correct and active.
 
-# Troubleshooting
 
-If you're having issues getting the above steps to work, see the [Troubleshooting](https://reactnative.dev/docs/troubleshooting) page.
 
-# Learn More
+Project Structure
 
-To learn more about React Native, take a look at the following resources:
+components/: Contains reusable UI components:
+SearchBar.tsx: Handles user input for city search.
+LocationList.tsx: Displays location suggestions.
+WeatherInfo.tsx: Renders weather data.
 
-- [React Native Website](https://reactnative.dev) - learn more about React Native.
-- [Getting Started](https://reactnative.dev/docs/environment-setup) - an **overview** of React Native and how setup your environment.
-- [Learn the Basics](https://reactnative.dev/docs/getting-started) - a **guided tour** of the React Native **basics**.
-- [Blog](https://reactnative.dev/blog) - read the latest official React Native **Blog** posts.
-- [`@facebook/react-native`](https://github.com/facebook/react-native) - the Open Source; GitHub **repository** for React Native.
+
+services/weatherService.ts: Manages API calls to OpenWeatherMap for weather and location data.
+constants/images.ts: Stores image assets (e.g., HomeBg for the background).
+SearchScreen.tsx: Main screen component integrating search, location, and weather display.
+
+Dependencies
+
+react-native
+react-native-safe-area-context
+axios
+lodash
+Other dependencies listed in package.json
+
+Notes
+
+The app uses OpenWeatherMap's free endpoints for weather and geocoding data.
+The fetchForecast function aggregates 3-hourly forecast data into daily forecasts for a cleaner UI.
+Ensure the HomeBg image in constants/images.ts is correctly configured or replace it with a valid image source.
+For production, consider defining TypeScript interfaces for weatherData instead of using any for better type safety.
+The app assumes a React Native CLI environment. For Expo, additional configuration may be required.
+
+Troubleshooting
+
+API Errors:
+401 Unauthorized: Verify your API key in weatherService.ts is correct.
+404 Not Found: Ensure the city name or coordinates are valid.
+Network Errors: Check your internet connection or OpenWeatherMap API status.
+
+
