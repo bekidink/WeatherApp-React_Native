@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 // API key for OpenWeatherMap
-const apiKey = "d0cf14bb70ad40a2cce49ba9bfc13694";
+const apiKey = "your-api-key-here";
 
 // Fetches location data based on a query string
 export const fetchLocations = async (query: any, limit = 5) => {
